@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* BOOTSTRAP */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+/* FONT AWESOME ICON FONT */
+@import '~font-awesome/css/font-awesome.min.css';
+
+/* THEMEING THE NGX-DATATABLE */
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+$primary-color: #c1d62e;
+$primary-color-hover: #b1c522;
+$danger-color: #f36d3b;
+$danger-color-hover: #f1551b;
+$dark-color: #3c3d34;
+$dark-color-hover: #2a2b24;
+
+body { 
+  padding-top: 80px; 
+}
+
+h1, h2, h3 { 
+  margin-bottom: 1.5rem;
+}
+
+.navbar { 
+  border-bottom: 3px solid #e7e7e7;
+}
+
+.navbar-light .navbar-brand {
+  color: $primary-color;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+  color: $primary-color-hover;
+}
+
+.list-group-item.active {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
+
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
+
+.btn-primary:hover {
+  background-color: $primary-color-hover;
+  border-color: $primary-color-hover;
+}
+
+.btn-danger {
+  background-color: $danger-color;
+  border-color: $danger-color;
+}
+
+.btn-danger:hover {
+  background-color: $danger-color-hover;
+  border-color: $danger-color-hover;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  background-color: $primary-color;
+  border-color: $primary-color;
+}
+
+.form-control:focus {
+  border: 1px solid $primary-color;
+  // border-color: $primary-color;
+}
+
+.fa-edit {
+  color: $dark-color;
+}
+
+.fa-edit:hover {
+  color: $dark-color-hover;
+}

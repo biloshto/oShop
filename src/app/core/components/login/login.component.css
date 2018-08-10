@@ -1,0 +1,36 @@
+.box {
+  /* background: rgba(204, 204, 204, 1);
+  box-shadow: 0 5px 0 0 rgba(204, 204, 204, .4); */
+  background: rgba(221, 75, 57, 1);
+  box-shadow: 0 5px 0 0 rgba(221, 75, 57, .4);
+  border-radius: 5px;
+  margin: auto;
+  max-width: 220px;
+  transition: 0.25s ease-in;
+}
+
+.box:hover {
+  /* background: rgba(179, 179, 179, 1);
+  box-shadow: 0 5px 0 0 rgba(179, 179, 179, .4); */
+  background: rgba(194, 51, 33, 1);
+  box-shadow: 0 5px 0 0 rgba(194, 51, 33, .4);
+  transition: 0.25s ease-out;
+}
+
+a {
+  cursor: pointer;
+  padding: 4%;
+  display: block;
+  text-decoration: none;
+}
+
+i {
+  color: #fff;
+}
+
+span {
+  margin-left: 5px;
+  padding: 5.4% 0 6% 20px;
+  border-left: 2px solid rgba(0,0,0, .2);
+  color: #fff;
+}

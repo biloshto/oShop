@@ -1,0 +1,14 @@
+<h2>Shipping</h2>
+<!-- <div class="row"> -->
+<!-- ONE WAY TO DO THIS IS WITH SUBSCRIPTION; THE OTHER IS WITH PASSING AN OBSERVABLE TO OUR TEMPLATE AND UNWRAP IT THERE WITH THE ASYNC PIPE -->
+<div class="row" *ngIf="cart$ | async as cart">
+  <div class="col-6">
+    <app-shipping-form [cart]="cart"></app-shipping-form>
+    <!-- [cart] is the Input we declared in the ShippingFormComponent, and "cart" is a filed we have in our CheckOutComponent; this way we get all the data we need so we can pass it to our ShippingFormComponent -->
+  </div>
+
+  <div class="col-6">
+    <app-shopping-cart-summary [cart]="cart"></app-shopping-cart-summary>
+    <!-- [cart] is the Input we declared in the ShoppingCartSummaryComponent, and "cart" is a filed we have in our CheckOutComponent; this way we get all the data we need so we can render it in our ShoppingCartSummary card -->
+  </div>
+</div>

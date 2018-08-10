@@ -1,0 +1,87 @@
+<p>
+  <a routerLink="/admin/products/new" class="btn btn-primary">New Product <i class="fa fa-plus ml-1"></i></a>
+</p>
+<p>
+  <input
+   #query
+   (keyup)="filter(query.value)" 
+   type="text" 
+   class="form-control" 
+   placeholder="Search...">
+</p>
+
+<!-- Angular 4 Datatable -->
+<!-- <data-table
+ [items]="items"
+ [itemCount]="itemCount"
+ (reload)="reloadItems($event)">
+  <data-table-column
+   [property]="'title'"
+   [header]="'Title'"
+   [sortable]="true"
+   [resizable]="true">    
+  </data-table-column>
+  <data-table-column
+   [property]="'price'"
+   [header]="'Price'"
+   [sortable]="true"
+   [resizable]="true">
+    <ng-template #dataTableCell let-item="item">
+      {{ item.price | currency:'USD':'symbol' }}
+    </ng-template>  
+  </data-table-column>
+  <data-table-column
+   [property]="'$key'">
+    <ng-template #dataTableCell let-item="item">
+      <a [routerLink]="['/admin/products/', item.$key]">Edit</a>
+    </ng-template>  
+  </data-table-column>
+</data-table> -->
+
+
+<ngx-datatable
+  class="material striped"
+  [rows]="rows"
+  [columnMode]="'force'"
+  [headerHeight]="40"
+  [footerHeight]="40"
+  [limit]="10"
+  [rowHeight]="'auto'"
+>
+
+  <ngx-datatable-column prop="title"></ngx-datatable-column>
+  <ngx-datatable-column prop="category"></ngx-datatable-column>
+  <ngx-datatable-column prop="price">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      <span>{{value | currency:'USD':'$'}}</span>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <a [routerLink]="['/admin/products', row['$key']]">
+        <i class="fa fa-edit fa-lg"></i>
+      </a>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
+
+
+
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of filteredProducts">
+      <td>{{ product.title }}</td>
+      <td>{{ product.price | currency:'USD':'symbol' }}</td>
+      <td>
+        <a [routerLink]="['/admin/products/', product.$key]">Edit</a>
+      </td>
+    </tr>
+  </tbody>
+</table> -->

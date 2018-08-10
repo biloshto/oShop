@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-sm-3">
+    <app-product-filter [category]="category"></app-product-filter>
+    <!-- we're binding this category input property of our product-filter.component to the category field in our products.component class -->
+  </div>
+  <div class="col-sm-9">
+    <div class="row" *ngIf="cart$ | async as cart">
+      <!-- <ng-container *ngFor="let product of products$ | async; let i = index"> -->
+      <ng-container *ngFor="let product of filteredProducts; let i = index">
+        <div class="col">
+          <app-product-card [product]="product" [shopping-cart]="cart"></app-product-card>
+          <!-- we're binding this product input property of our product-card.component to the product variable we defined in the ngFor -->
+        </div>
+        <div *ngIf="(i + 1) % 3 === 0" class="w-100"></div>
+        <!-- <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div> -->
+        <!-- we want to render this div only after every two products -->
+      </ng-container>
+    </div>
+    <!-- Bootstrap's Equal-width multi-row layout -->
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<h3>Orders</h3>
+<div *ngIf="orders$ | async as orders">
+  <ng-container *ngIf="orders.length > 0; else orderInfo">  
+    <!-- <table class="table table-hover table-bordered"> -->
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Address</th>
+            <th>Order Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.shipping.name }}</td>
+            <td>
+              {{ order.shipping.address1 }}<span *ngIf="order.shipping.address2">, {{ order.shipping.address2 }}</span>
+            </td>
+            <td>{{ order.datePlaced | date:'medium' }}</td>
+            <td>
+              <div class="btn-group">
+                <a [routerLink]="['/order-detail', order.$key]" class="btn btn-sm btn-primary">
+                  <i class="fa fa-eye"></i>
+                </a>
+                <button (click)="deleteOrder(order)" class="btn btn-sm btn-danger">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>  
+  </ng-container>  
+</div>
+
+<ng-template #orderInfo>
+  <p class="alert alert-info">There are no orders currently</p>
+</ng-template>

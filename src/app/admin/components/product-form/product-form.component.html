@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-md-6">
+    <form #f="ngForm" (ngSubmit)="save(f.value)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input #title="ngModel" [(ngModel)]="product.title" name="title" type="text" id="title" class="form-control" required>
+        <div class="alert alert-danger mt-2" *ngIf="title.touched && title.invalid">
+          Title is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+          <input #price="ngModel" [(ngModel)]="product.price" name="price" type="number" id="price" class="form-control" required [min]="0">
+        </div>
+        <div class="alert alert-danger mt-2" *ngIf="price.touched && price.invalid">
+          <div *ngIf="price.errors.required">Price is required.</div>
+          <div *ngIf="price.errors.min">Price should be 0 or higher.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control" required>
+          <!-- <option selected>Choose...</option> -->
+          <option value="">Choose...</option>
+          <option *ngFor="let category of categories$ | async" [value]="category.$key">
+            <!-- {{ category | json }} -->
+            {{ category.name }}
+          </option>
+          <!-- every object in firebase has this property $key which is the unique identifier for that object, in this case that $key is bread, dairy, fruits - the values with lower case -->
+        </select>
+        <div class="alert alert-danger mt-2" *ngIf="category.touched && category.invalid">
+          Category is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input #imageUrl="ngModel" [(ngModel)]="product.imageUrl" name="imageUrl" type="text" id="imageUrl" class="form-control" required url>
+        <div class="alert alert-danger mt-2" *ngIf="imageUrl.touched && imageUrl.invalid">      
+          <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
+          <div *ngIf="imageUrl.errors.url">Please enter a valid URL.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <button class="btn btn-primary btn-block">Save <i class="fa fa-save ml-1"></i></button>
+        </div>
+        <div class="col-md-4">
+          <button type="button" (click)="delete()" class="btn btn-danger btn-block">Delete <i class="fa fa-trash ml-1"></i></button>
+        </div>
+      </div>
+      <!-- <button class="btn btn-primary">Save</button>
+      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button> -->
+    </form>
+    <div class="row my-4">
+      <div class="col">
+        <a routerLink="/admin/products" class="btn btn-light btn-block"><i class="fa fa-arrow-left mr-1"></i> Back to Products</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <app-product-card [product]="product" [show-actions]="false"></app-product-card>
+    <!-- <div *ngIf="product.title" class="card" style="width: 95%; margin-left: 5%;">
+      <img *ngIf="product.imageUrl" class="card-img-top" [src]="product.imageUrl">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">{{ product.price | currency:'USD':'symbol' }}</p>
+      </div>
+    </div> -->
+  </div>
+</div>
+
+
+
+<!-- 
+  https://github.com/yuyang041060120/ng2-validation
+  custom validators from a third package party: min, url
+ -->
